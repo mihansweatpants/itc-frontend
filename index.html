@@ -36,6 +36,89 @@
         // var multiply = (a, b) => a * b;
 
         console.log(multiply(3, 10)) // 30
+
+        // 3
+        function mergeArrays(arr1, arr2) {
+            return arr1.concat(arr2);
+        }
+
+        console.log(mergeArrays([1, 2, 3], [4, 5]));
+
+        // 4
+        people = [
+            {
+                sex: 'female',
+                name: 'Sofi',
+                favMovie: 'Scarface'
+            },
+
+            {
+                sex: 'female',
+                name: 'Lora',
+                favMovie: 'Midget porn'
+            },
+
+            {
+                sex: 'male',
+                name: 'Jeff',
+                favMovie: 'Some cool ass action movie with big explosions'
+            },
+
+            {
+                sex: 'female',
+                name: 'Linda',
+                favMovie: 'Jay and Silent Bob strike back'
+            }
+        ]
+        
+        function filterFemales(arr) {
+            var females = [];
+            for (var i = 0; i < arr.length; i++)
+                if (arr[i].sex == 'female') {
+                    females.push(arr[i]);
+                }
+            return females;
+        }
+        
+
+        console.log(filterFemales(people))
+
+        //5
+
+        function getQuadrant(x, y) {
+            var q
+            if (x > 0) {
+                if (y > 0) {
+                   q = 'I четверть';
+                } else if (y < 0) {
+                    q = 'IV четверть';
+                } else if (y == 0) {
+                    q = 'Точка на оси абсцисс';
+                }
+            } else if (x < 0) {
+                if (y > 0) {
+                    q = 'II четверть';
+                } else if (y < 0) {
+                    q = 'III четверть';
+                } else if (y == 0) {
+                    q = 'Точка на оси абсцисс';
+                }
+            } else if (x == 0) {
+                if (y == 0) {
+                    q = 'Начало кординат'
+                } else {
+                    q = 'Ось ординат'
+                }
+            }
+
+            return q
+        }
+        
+        console.log(getQuadrant(1, 2))
+        console.log(getQuadrant(-1, 2))
+        console.log(getQuadrant(-2, -3))
+        console.log(getQuadrant(4, -7))
+        console.log(getQuadrant(0, 0))
     
     </script>
 </body>

@@ -157,7 +157,7 @@
         // 3
         // Использовать map и join
         //В конце прогнать через encodeURI
-        
+
         function objectToQueryString(obj) {
             string = Object.keys(obj).map( function(key) {
                 return key + '=' + obj[key];
@@ -180,7 +180,31 @@
 
         var anotherFilterFemales2 = (arr) => arr.filter( obj => obj.sex == 'female' );
         console.log(anotherFilterFemales2(people));
-    
+
+        
+        //5
+        
+        
+        function getIn(obj, path, def) { 
+           return path.reduce((prev, next) =>
+               (prev && prev[next]) ? prev[next] : def, obj)
+        }; 
+        
+        const person = {
+            address: {
+                street: "Кутузовский проспект"
+             }
+        } 
+
+        const person2 = {
+            address: {
+                // street: "Кутузовский проспект"
+             }
+        }  
+
+        console.log(  getIn(person, ['address', 'street'], 'Бомж') )
+        console.log(  getIn(person2, ['address', 'street'], 'Бомж') )
+
     </script>
 </body>
 

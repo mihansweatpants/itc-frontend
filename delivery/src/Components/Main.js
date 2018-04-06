@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import LeadInfo from './LeadInfo';
 import Restaurants from './Restaurants';
-import Footer from './Footer'
+import Footer from './Footer';
 import { injectGlobal } from 'styled-components';
 
 class Main extends Component {
@@ -19,14 +19,15 @@ class Main extends Component {
     }
 }
 
+const App = styled.div``;
+
 injectGlobal`
     body {
       margin: 0;
       font-family: "Open Sans", sans-serif;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 `;
 
-const App = styled.div``;
-
 export default Main;
-

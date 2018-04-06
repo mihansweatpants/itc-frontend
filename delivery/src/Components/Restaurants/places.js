@@ -1,4 +1,4 @@
-import shop_logo from '../../img/logo-shop.jpg';
+import shop_logo from '../../img/storecard.jpg';
 
 export default [
     {

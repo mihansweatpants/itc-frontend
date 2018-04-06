@@ -59,11 +59,7 @@ const Logo = styled.img`
 const LoginBtn = Button.extend`
     margin-top: 63px;
 
-    /* @media (max-width: 991px) {
-        margin-top: 16px;
-    } */
-
-    @media (max-width: 1200px) {
+    @media (max-width: 991px) {
         margin-top: 16px;
     }
 `;

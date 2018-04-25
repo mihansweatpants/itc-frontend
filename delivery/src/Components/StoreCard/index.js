@@ -42,11 +42,18 @@ const DeliveryInfo = styled.p`
     font-weight: bold;
 `;
 
-const StoreCard = ({ name, img, minPrice, deliveryPrice, deliveryTime }) => (
-    <Link >
+const StoreCard = ({
+    name,
+    img,
+    link
+    // minPrice,
+    // deliveryPrice,
+    // deliveryTime
+}) => (
+    <Link href={link}>
         <Image src={img} />
         <Name>{name}</Name>
-        <OrderInfo>
+        {/* <OrderInfo>
             Заказ от
             <MinPrice> {minPrice}р.</MinPrice>
         </OrderInfo>
@@ -54,7 +61,7 @@ const StoreCard = ({ name, img, minPrice, deliveryPrice, deliveryTime }) => (
         <DeliveryInfo>
             {deliveryPrice ? `${deliveryPrice}р.` : 'бесплатно'}, {deliveryTime}{' '}
             минут
-        </DeliveryInfo>
+        </DeliveryInfo> */}
     </Link>
 );
 

@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from '../Button';
 import background from '../../img/bg.jpg';
 import logoImg from '../../img/logowhite.png';
 
-class Header extends Component {
-    render() {
-        return (
-            <Container>
-                <Grid>
-                    <Row center="xs">
-                        <Col lg={3}>
-                            <Logo src={logoImg} alt="Delivery Club" />
-                        </Col>
-                        <Col lgOffset={5} />
-                        <Col lg={3}>
-                            <LoginBtn>Вход / Регистрация</LoginBtn>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>
-                            <Lead1>Меняйте баллы</Lead1>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>
-                            <Lead2>на призы</Lead2>
-                        </Col>
-                    </Row>
-                    <Row center="xs" top="xs">
-                        <Col xs={12}>
-                            <AboutBtn>Подробнее</AboutBtn>
-                        </Col>
-                    </Row>
-                </Grid>
-            </Container>
-        );
-    }
-}
+const Header = () => {
+    return (
+        <Container>
+            <Grid>
+                <Row center="xs">
+                    <Col lg={3}>
+                        <Logo src={logoImg} alt="Delivery Club" />
+                    </Col>
+                    <Col lgOffset={5} />
+                    <Col lg={3}>
+                        <LoginBtn>Вход / Регистрация</LoginBtn>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12}>
+                        <Lead1>Меняйте баллы</Lead1>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12}>
+                        <Lead2>на призы</Lead2>
+                    </Col>
+                </Row>
+                <Row center="xs" top="xs">
+                    <Col xs={12}>
+                        <AboutBtn>Подробнее</AboutBtn>
+                    </Col>
+                </Row>
+            </Grid>
+        </Container>
+    );
+};
 
 export default Header;
 

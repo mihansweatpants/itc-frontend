@@ -13,7 +13,7 @@ class Main extends Component {
 
     getStores = async () => {
         const res = await fetch(
-            'https://itc-web1-server-iwcqwjrbcr.now.sh/stores'
+            'https://itc-web1-server-iwcqwjrbcr.now.sh/stores?limit=8'
         );
         const resJSON = await res.json();
 

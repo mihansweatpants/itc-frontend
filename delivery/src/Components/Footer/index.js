@@ -80,6 +80,7 @@ const FooterLink = styled.a`
     text-align: center;
     text-decoration: underline;
     color: #cccccc;
+    cursor: pointer;
 
     &:hover {
         color: #a3d200;
@@ -108,6 +109,8 @@ const Copyright = styled.p`
     }
 `;
 
-const Link = styled.a``;
+const Link = styled.a`
+    cursor: pointer;
+`;
 
 export default Footer;

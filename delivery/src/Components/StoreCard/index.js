@@ -1,12 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const StoreCard = ({ name, img, link }) => (
+    <Link href={link}>
+        <Image src={img} />
+        <Name>{name}</Name>
+    </Link>
+);
+
 const Link = styled.a`
     display: block;
     margin-bottom: 48px;
     text-decoration: inherit;
     color: inherit;
     cursor: poiner;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        transform: translate(0, -10px);
+    }
 `;
 
 const Image = styled.img`
@@ -22,47 +34,5 @@ const Name = styled.h2`
     text-align: left;
     color: #333333;
 `;
-
-const OrderInfo = styled.p`
-    margin: 6px 0;
-    font-size: 16px;
-    line-height: 22px;
-`;
-
-const MinPrice = styled.span`
-    font-weight: bold;
-`;
-
-const Text = styled.p`
-    margin: 6px 0 0 0;
-`;
-
-const DeliveryInfo = styled.p`
-    margin: 0 0 6px 0;
-    font-weight: bold;
-`;
-
-const StoreCard = ({
-    name,
-    img,
-    link
-    // minPrice,
-    // deliveryPrice,
-    // deliveryTime
-}) => (
-    <Link href={link}>
-        <Image src={img} />
-        <Name>{name}</Name>
-        {/* <OrderInfo>
-            Заказ от
-            <MinPrice> {minPrice}р.</MinPrice>
-        </OrderInfo>
-        <Text>Доставка</Text>
-        <DeliveryInfo>
-            {deliveryPrice ? `${deliveryPrice}р.` : 'бесплатно'}, {deliveryTime}{' '}
-            минут
-        </DeliveryInfo> */}
-    </Link>
-);
 
 export default StoreCard;

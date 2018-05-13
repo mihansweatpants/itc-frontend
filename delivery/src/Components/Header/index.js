@@ -3,21 +3,13 @@ import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from '../Button';
 import background from '../../img/bg.jpg';
-import logoImg from '../../img/logowhite.png';
+import HeaderTop from './Top';
 
-const Header = () => {
+const Header = props => {
     return (
         <Container>
             <Grid>
-                <Row center="xs">
-                    <Col lg={3}>
-                        <Logo src={logoImg} alt="Delivery Club" />
-                    </Col>
-                    <Col lgOffset={5} />
-                    <Col lg={3}>
-                        <LoginBtn>Вход / Регистрация</LoginBtn>
-                    </Col>
-                </Row>
+                <HeaderTop logoColor={props.logo} main={props.main} />
                 <Row>
                     <Col xs={12}>
                         <Lead1>Меняйте баллы</Lead1>
@@ -45,21 +37,6 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 75px;
-`;
-
-const Logo = styled.img`
-    max-width: 208px;
-    max-height: 64px;
-    margin-top: 50px;
-    color: #fff;
-`;
-
-const LoginBtn = Button.extend`
-    margin-top: 63px;
-
-    @media (max-width: 991px) {
-        margin-top: 16px;
-    }
 `;
 
 const AboutBtn = Button.extend`

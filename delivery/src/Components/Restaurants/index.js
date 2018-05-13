@@ -1,40 +1,108 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Link } from 'react-router-dom';
+
 import StoreCard from '../StoreCard';
 import H1 from '../Heading';
 import Button from '../Button';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import Spinner from '../Spinner';
 
-const Restaurants = ({ restaurants }) => {
-    const restList = restaurants.map(restaurant => {
-        return (
-            <Col lg={3} md={3} sm={6} key={restaurant.uuid}>
-                <StoreCard
-                    name={restaurant.title}
-                    img={restaurant.heroImageUrl}
-                    link={restaurant.link}
-                    // minPrice={}
-                    // deliveryPrice={}
-                    // deliveryTime={}
-                />
-            </Col>
+class Restaurants extends Component {
+    state = {
+        restaurants: null,
+        limit: this.props.main ? 8 : 12,
+        moreStores: null,
+        loading: true
+    };
+
+    getStores = async () => {
+        const res = await fetch(
+            `https://itc-web1-server-iwcqwjrbcr.now.sh/stores?limit=${
+                this.state.limit
+            }`
         );
-    });
+        const resData = await res.json();
 
-    return (
-        <Grid>
-            <Row center="xs">
-                <Col sm={12}>
-                    <H1>Рестораны</H1>
-                </Col>
-            </Row>
-            <Row>{restList}</Row>
-            <Row center="xs">
-                <Col>
-                    <Button>Все рестораны</Button>
-                </Col>
-            </Row>
-        </Grid>
-    );
-};
+        this.setState({
+            restaurants: resData.payload.stores,
+            moreStores: resData.payload.hasMore,
+            loading: false
+        });
+    };
+
+    loadMoreStores = async () => {
+        if (this.state.moreStores) {
+            this.setState({
+                loading: true
+            });
+
+            const res = await fetch(
+                `https://itc-web1-server-iwcqwjrbcr.now.sh/stores?limit=${this
+                    .state.limit + 12}`
+            );
+
+            const resData = await res.json();
+
+            this.setState(prevState => {
+                return {
+                    restaurants: resData.payload.stores,
+                    limit: prevState.limit + 12,
+                    moreStores: resData.payload.hasMore,
+                    loading: false
+                };
+            });
+        }
+    };
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+        this.getStores();
+    }
+
+    render() {
+        let restList;
+        if (this.state.restaurants) {
+            restList = this.state.restaurants.map(restaurant => {
+                return (
+                    <Col lg={3} md={3} sm={6} key={restaurant.uuid}>
+                        <StoreCard
+                            name={restaurant.title}
+                            img={restaurant.heroImageUrl}
+                            link={restaurant.link}
+                        />
+                    </Col>
+                );
+            });
+        }
+
+        return (
+            <Grid>
+                <Row center="xs">
+                    <Col sm={12}>
+                        <H1>Рестораны</H1>
+                    </Col>
+                </Row>
+                <Row center="xs">{restList || <Spinner />}</Row>
+                <Row center="xs">
+                    <Col>
+                        {this.props.main ? (
+                            <Link to="/catalog">
+                                <Button>Все рестораны</Button>
+                            </Link>
+                        ) : (
+                            this.state.moreStores && (
+                                <Button onClick={this.loadMoreStores}>
+                                    {this.state.loading
+                                        ? 'Загрузка...'
+                                        : 'Загрузить еще'}
+                                </Button>
+                            )
+                        )}
+                    </Col>
+                </Row>
+            </Grid>
+        );
+    }
+}
 
 export default Restaurants;

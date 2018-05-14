@@ -73,6 +73,12 @@ class Restaurants extends Component {
                             name={restaurant.title}
                             img={restaurant.heroImageUrl}
                             link={restaurant.link}
+                            categories={restaurant.categories.map(
+                                category => category.name
+                            )}
+                            alcohol={restaurant.sellsAlcohol}
+                            priceBucket={restaurant.priceBucket}
+                            deliveryTime={restaurant.etaRange}
                         />
                     </Col>
                 );

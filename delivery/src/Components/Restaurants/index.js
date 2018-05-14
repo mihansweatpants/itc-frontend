@@ -11,15 +11,16 @@ class Restaurants extends Component {
     state = {
         restaurants: null,
         limit: this.props.main ? 8 : 12,
+        offset: 0,
         moreStores: null,
         loading: true
     };
 
     getStores = async () => {
         const res = await fetch(
-            `https://itc-web1-server-iwcqwjrbcr.now.sh/stores?limit=${
+            `https://itc-web1-server.now.sh/stores?limit=${
                 this.state.limit
-            }`
+            }&offset=${this.state.offset}`
         );
         const resData = await res.json();
 
@@ -37,16 +38,19 @@ class Restaurants extends Component {
             });
 
             const res = await fetch(
-                `https://itc-web1-server-iwcqwjrbcr.now.sh/stores?limit=${this
-                    .state.limit + 12}`
+                `https://itc-web1-server.now.sh/stores?limit=${
+                    this.state.limit
+                }&offset=${this.state.offset + 12}`
             );
 
             const resData = await res.json();
 
             this.setState(prevState => {
                 return {
-                    restaurants: resData.payload.stores,
-                    limit: prevState.limit + 12,
+                    restaurants: prevState.restaurants.concat(
+                        resData.payload.stores
+                    ),
+                    offset: prevState.offset + 12,
                     moreStores: resData.payload.hasMore,
                     loading: false
                 };
